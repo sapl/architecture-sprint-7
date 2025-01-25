@@ -1,0 +1,16 @@
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: techlead-project2-binding
+  namespace: project2
+subjects:
+  - kind: Group
+    name: techlead2-group
+    apiGroup: rbac.authorization.k8s.io
+  - kind: ServiceAccount
+    name: techlead2-account
+    namespace: project2
+roleRef:
+  kind: Role
+  name: techlead-project2-role
+  apiGroup: rbac.authorization.k8s.io

@@ -1,0 +1,16 @@
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: developer-project2-binding
+  namespace: project2
+subjects:
+  - kind: Group
+    name: developer2-group
+    apiGroup: rbac.authorization.k8s.io
+  - kind: ServiceAccount
+    name: developer2-account
+    namespace: project2
+roleRef:
+  kind: Role
+  name: developer-project2-role
+  apiGroup: rbac.authorization.k8s.io
