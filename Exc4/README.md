@@ -42,7 +42,6 @@ kubectl apply -f roles/techlead-project2-role.yaml
 ```shell
 kubectl create serviceaccount developer1-account -n project1
 kubectl create serviceaccount techlead1-account -n project1
-kubectl apply -f bindings/monitoring-binding.yaml
 kubectl apply -f bindings/developer-project1-binding.yaml
 kubectl apply -f bindings/developer-project2-binding.yaml
 kubectl apply -f bindings/techlead-project1-binding.yaml
@@ -74,8 +73,8 @@ kubectl -n project1 get secret \
   -o jsonpath='{.data.token}' \
   | base64 --decode
 ```
-Ему будуте видны только поды из project1
-и для них не видны секреты
+Ему будут видны только ресурсы из project1, без секретов
+и прав на редактирование
 
 - Получить токен для techlead1
 ```shell
@@ -84,7 +83,5 @@ kubectl -n project1 get secret \
   -o jsonpath='{.data.token}' \
   | base64 --decode
 ```
-
-аналогично для teamlead1 уже будут видны и секреты
-и есть права на изменение
+для teamlead1 уже будут видны и секреты и есть права на изменение
 
