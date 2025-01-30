@@ -20,12 +20,13 @@ kubectl run admin-back-end-api-app --image=nginx --labels role=admin-back-end-ap
 
 - Применить политики:
 ```shell
-kubectl apply -f non-admin-api-allow.yaml
+kubectl apply -f non-admin-api-allow.yml
+kubectl apply -f admin-api-allow.yml
 ```
 
 - Проверяем доступность
 ```shell
- kubectl run test-$RANDOM --image=alpine --labels role=front-end --restart=Never -it --rm -- sh
-# wget -qO- --timeout=2 http://back-end-api-app     # Должно получиться
+ kubectl run test-front --rm -i -t --image=alpine --labels role=front-end -- sh
+# wget -qO- --timeout=2 http://back-end-api-app   # Должно получиться
 # wget -qO- --timeout=2 http://admin-back-end-api-app  # Должно быть "timeout" или "refused"
 ```
